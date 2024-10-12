@@ -10,6 +10,7 @@
 - [ ] Use badges for specialties
 - [ ] Put badges in alphabetical order
 - [ ] Format phone numbers
+- [ ] Consolidate first and last name columns
 - [ ] Add page title styling
 
 ## UX Improvements
