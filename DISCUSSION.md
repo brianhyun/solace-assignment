@@ -1,7 +1,7 @@
 # Discussion
 
-## UI/UX Improvements
+## Bug Fixes
 
-- [ ] Add pagination
-- [ ] Add search bar
-- [ ] Add filters
+- [X] <th> inside <tr> in <thead>
+- [X] Convert years of experience to string for comparison with searchTerm
+- [X] Search doesn't work for specialties and phone numbers
