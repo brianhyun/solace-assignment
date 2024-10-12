@@ -2,6 +2,11 @@
 
 import { useEffect, useState } from "react";
 
+import Table from "@/components/table/table";
+import TableHead from "@/components/table/head";  
+import TableBody from "@/components/table/body";
+import TableDataCell from "@/components/table/data-cell";
+
 export default function Home() {
   const [advocates, setAdvocates] = useState([]);
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
@@ -56,36 +61,36 @@ export default function Home() {
       </div>
       <br />
       <br />
-      <table>
-        <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>City</th>
-          <th>Degree</th>
-          <th>Specialties</th>
-          <th>Years of Experience</th>
-          <th>Phone Number</th>
-        </thead>
-        <tbody>
+      <Table>
+        <TableHead headers={[
+          "First Name",
+          "Last Name",
+          "City",
+          "Degree",
+          "Specialties",
+          "Years of Experience",
+          "Phone Number"
+        ]} />
+        <TableBody>
           {filteredAdvocates.map((advocate) => {
             return (
               <tr>
-                <td>{advocate.firstName}</td>
-                <td>{advocate.lastName}</td>
-                <td>{advocate.city}</td>
-                <td>{advocate.degree}</td>
-                <td>
+                <TableDataCell>{advocate.firstName}</TableDataCell>
+                <TableDataCell>{advocate.lastName}</TableDataCell>
+                <TableDataCell>{advocate.city}</TableDataCell>
+                <TableDataCell>{advocate.degree}</TableDataCell>
+                <TableDataCell>
                   {advocate.specialties.map((s) => (
                     <div>{s}</div>
                   ))}
-                </td>
-                <td>{advocate.yearsOfExperience}</td>
-                <td>{advocate.phoneNumber}</td>
+                </TableDataCell>
+                <TableDataCell>{advocate.yearsOfExperience}</TableDataCell>
+                <TableDataCell>{advocate.phoneNumber}</TableDataCell>
               </tr>
             );
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </main>
   );
 }

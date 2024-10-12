@@ -2,8 +2,8 @@
 
 ## UI Improvements
 
-- [ ] Page isn't mobile responsive
-- [ ] Add table styling
+- [X] Page isn't mobile responsive
+- [X] Add table styling (utilized TailwindUI component styling)
 - [ ] Add search styling
 - [ ] On empty search results, display placeholder
 - [ ] Show "N/A" instead of empty fields
