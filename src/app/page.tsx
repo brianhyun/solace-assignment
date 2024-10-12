@@ -2,6 +2,14 @@
 
 import { useEffect, useState } from "react";
 
+import Input from "@/components/form/input";
+import { SecondaryButton } from "@/components/form/button";
+
+import Table from "@/components/table/table";
+import TableHead from "@/components/table/head";  
+import TableBody from "@/components/table/body";
+import TableDataCell from "@/components/table/data-cell";
+
 export default function Home() {
   const [advocates, setAdvocates] = useState([]);
   const [filteredAdvocates, setFilteredAdvocates] = useState([]);
@@ -29,7 +37,7 @@ export default function Home() {
         advocate.city.includes(searchTerm) ||
         advocate.degree.includes(searchTerm) ||
         advocate.specialties.includes(searchTerm) ||
-        advocate.yearsOfExperience.includes(searchTerm)
+        advocate.yearsOfExperience.toString().includes(searchTerm)
       );
     });
 
@@ -39,53 +47,51 @@ export default function Home() {
   const onClick = () => {
     console.log(advocates);
     setFilteredAdvocates(advocates);
+    document.getElementById("search-term").innerHTML = "";
+    document.getElementById("search-term").value = "";
   };
 
   return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
-      <br />
-      <br />
-      <div>
-        <p>Search</p>
-        <p>
-          Searching for: <span id="search-term"></span>
-        </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
-        <button onClick={onClick}>Reset Search</button>
-      </div>
-      <br />
-      <br />
-      <table>
-        <thead>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>City</th>
-          <th>Degree</th>
-          <th>Specialties</th>
-          <th>Years of Experience</th>
-          <th>Phone Number</th>
-        </thead>
-        <tbody>
-          {filteredAdvocates.map((advocate) => {
-            return (
-              <tr>
-                <td>{advocate.firstName}</td>
-                <td>{advocate.lastName}</td>
-                <td>{advocate.city}</td>
-                <td>{advocate.degree}</td>
-                <td>
-                  {advocate.specialties.map((s) => (
-                    <div>{s}</div>
-                  ))}
-                </td>
-                <td>{advocate.yearsOfExperience}</td>
-                <td>{advocate.phoneNumber}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </main>
+    <div className="bg-slate-50 bg-opacity-25">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <h1 className="text-2xl font-medium text-gray-800">Solace Advocates</h1>
+        <br />
+        <div className="flex items-stretch gap-2 mt-2">
+          <Input onChange={onChange} />
+          <SecondaryButton onClick={onClick}>Reset</SecondaryButton>
+        </div>
+        <br />
+        <Table>
+          <TableHead headers={[
+            "First Name",
+            "Last Name",
+            "City",
+            "Degree",
+            "Specialties",
+            "Years of Experience",
+            "Phone Number"
+          ]} />
+          <TableBody>
+            {filteredAdvocates.map((advocate) => {
+              return (
+                <tr>
+                  <TableDataCell>{advocate.firstName}</TableDataCell>
+                  <TableDataCell>{advocate.lastName}</TableDataCell>
+                  <TableDataCell>{advocate.city}</TableDataCell>
+                  <TableDataCell>{advocate.degree}</TableDataCell>
+                  <TableDataCell>
+                    {advocate.specialties.map((s) => (
+                      <div>{s}</div>
+                    ))}
+                  </TableDataCell>
+                  <TableDataCell>{advocate.yearsOfExperience}</TableDataCell>
+                  <TableDataCell>{advocate.phoneNumber}</TableDataCell>
+                </tr>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </main>
+    </div>
   );
 }
