@@ -2,12 +2,13 @@
 
 ## UI Improvements
 
+- [ ] Page isn't mobile responsive
+- [ ] Add table styling
+- [ ] Add search styling
 - [ ] On empty search results, display placeholder
 - [ ] Show "N/A" instead of empty fields
 - [ ] Use badges for specialties
 - [ ] Format phone numbers
-- [ ] Add search styling
-- [ ] Add table styling
 - [ ] Add page title styling
 
 ## UX Improvements
