@@ -2,23 +2,25 @@
 
 import { useEffect, useState } from "react";
 
+import { Advocate } from "@/types/advocate";
+
 export default function Home() {
-  const [advocates, setAdvocates] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredAdvocates, setFilteredAdvocates] = useState([]);
+  const [advocates, setAdvocates] = useState<Advocate[]>([]);
+  const [filteredAdvocates, setFilteredAdvocates] = useState<Advocate[]>([]);
 
   useEffect(() => {
     fetch("/api/advocates").then((response) => {
-      response.json().then((jsonResponse) => {
+      response.json().then((jsonResponse: { data: Advocate[] }) => {
         setAdvocates(jsonResponse.data);
         setFilteredAdvocates(jsonResponse.data);
       });
     });
   }, []);
 
-  const onChange = (e) => {
-    const searchTerm = e.target.value;
-    setSearchTerm(searchTerm);
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchTerm = event.target.value;
+    setSearchTerm(event.target.value);
 
     const filteredAdvocates = advocates.filter((advocate) => {
       return (
