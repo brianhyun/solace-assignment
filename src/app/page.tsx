@@ -10,12 +10,18 @@ export default function Home() {
   const [filteredAdvocates, setFilteredAdvocates] = useState<Advocate[]>([]);
 
   useEffect(() => {
-    fetch("/api/advocates").then((response) => {
-      response.json().then((jsonResponse: { data: Advocate[] }) => {
-        setAdvocates(jsonResponse.data);
-        setFilteredAdvocates(jsonResponse.data);
-      });
-    });
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/advocates");
+        const data = await response.json();
+        setAdvocates(data.data);
+        setFilteredAdvocates(data.data);
+      } catch (error) {
+        console.error("Error fetching advocates:", error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
