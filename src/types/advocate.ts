@@ -1,4 +1,3 @@
-
 export interface Advocate {
     firstName: string;
     lastName: string;

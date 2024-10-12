@@ -19,18 +19,20 @@ export default function Home() {
   }, []);
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const searchTerm = event.target.value;
-    setSearchTerm(event.target.value);
+    const searchTerm = event.target.value.toLowerCase();
+    setSearchTerm(searchTerm);
 
     const filteredAdvocates = advocates.filter((advocate) => {
-      return (
-        advocate.firstName.includes(searchTerm) ||
-        advocate.lastName.includes(searchTerm) ||
-        advocate.city.includes(searchTerm) ||
-        advocate.degree.includes(searchTerm) ||
-        advocate.specialties.includes(searchTerm) ||
-        advocate.yearsOfExperience.toString().includes(searchTerm)
-      );
+      const advocateData = [
+        advocate.firstName,
+        advocate.lastName,
+        advocate.city,
+        advocate.degree,
+        ...advocate.specialties,
+        advocate.yearsOfExperience.toString(),
+      ];
+
+      return advocateData.some((data) => data.toLowerCase().includes(searchTerm));
     });
 
     setFilteredAdvocates(filteredAdvocates);
