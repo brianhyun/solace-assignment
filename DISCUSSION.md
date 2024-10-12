@@ -4,7 +4,7 @@
 
 - [X] Page isn't mobile responsive
 - [X] Add table styling (utilized TailwindUI component styling)
-- [ ] Add search styling
+- [X] Add search styling
 - [ ] Add loading icon when loading data
 - [ ] On empty search results, display placeholder
 - [ ] Show "N/A" instead of empty fields
