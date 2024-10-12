@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from "react";
 
+import Input from "@/components/form/input";
+import { SecondaryButton } from "@/components/form/button";
+
 import Table from "@/components/table/table";
 import TableHead from "@/components/table/head";  
 import TableBody from "@/components/table/body";
@@ -50,16 +53,10 @@ export default function Home() {
     <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
       <h1>Solace Advocates</h1>
       <br />
-      <br />
-      <div>
-        <p>Search</p>
-        <p>
-          Searching for: <span id="search-term"></span>
-        </p>
-        <input style={{ border: "1px solid black" }} onChange={onChange} />
-        <button onClick={onClick}>Reset Search</button>
+      <div className="flex items-stretch gap-2 mt-2">
+        <Input onChange={onChange} />
+        <SecondaryButton onClick={onClick}>Reset</SecondaryButton>
       </div>
-      <br />
       <br />
       <Table>
         <TableHead headers={[
